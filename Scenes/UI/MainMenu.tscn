@@ -1,0 +1,400 @@
+[gd_scene load_steps=19 format=3 uid="uid://b1tf8c6n4sckq"]
+
+[ext_resource type="Script" uid="uid://bdbkfkloc416t" path="res://Scripts/UI/main_menu.gd" id="1_mjmdf"]
+[ext_resource type="Texture2D" uid="uid://cl6t87ej7mwvt" path="res://Assets/GUI/MainMenu.png" id="2_t6w0q"]
+[ext_resource type="FontFile" uid="uid://b2ijvd80bagm4" path="res://Assets/Font/LilitaOne-Regular.ttf" id="3_72sra"]
+[ext_resource type="Texture2D" uid="uid://j3fl7p2jbdj5" path="res://Assets/GUI/ComingSoon.png" id="4_t6w0q"]
+[ext_resource type="Texture2D" uid="uid://b5i1rvwuu4r0v" path="res://Assets/GUI/DogSprite.png" id="5_744d7"]
+[ext_resource type="Texture2D" uid="uid://bgk0ywroxt6sa" path="res://Assets/GUI/MenuBtn.png" id="6_kl3t2"]
+[ext_resource type="Texture2D" uid="uid://dhyx45hswt6se" path="res://Assets/GUI/ExitBtn.png" id="7_744d7"]
+[ext_resource type="Texture2D" uid="uid://j4k6cu44fkn3" path="res://Assets/GUI/PopUpGui.png" id="7_m48tj"]
+[ext_resource type="Texture2D" uid="uid://sux4ptqkbv87" path="res://Assets/GUI/QuitBtn.png" id="8_dvisc"]
+[ext_resource type="FontFile" uid="uid://cw5kuuy3dhdrj" path="res://Assets/Font/Montserrat-Bold.ttf" id="9_ab04i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynupv"]
+atlas = ExtResource("5_744d7")
+region = Rect2(0, 891, 512, 296)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m48tj"]
+atlas = ExtResource("5_744d7")
+region = Rect2(512, 891, 512, 296)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvisc"]
+atlas = ExtResource("5_744d7")
+region = Rect2(0, 1187, 512, 296)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ab04i"]
+atlas = ExtResource("5_744d7")
+region = Rect2(512, 1187, 512, 296)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hys1s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynupv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m48tj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvisc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ab04i")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_m48tj"]
+resource_name = "DogMovement"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(456, 628), Vector2(732, 532), Vector2(893, 730)]
+}
+
+[sub_resource type="Animation" id="Animation_dvisc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(456, 628)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ab04i"]
+_data = {
+&"DogMovement": SubResource("Animation_m48tj"),
+&"RESET": SubResource("Animation_dvisc")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mjmdf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-805, 0)
+texture = ExtResource("2_t6w0q")
+centered = false
+
+[node name="Header" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -351.5
+offset_top = 48.0
+offset_right = 367.5
+offset_bottom = 199.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0.35686275, 0.5568628, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("3_72sra")
+theme_override_font_sizes/font_size = 130
+text = "DOGRUNNER"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(456, 628)
+scale = Vector2(1.0019531, 1.1655405)
+sprite_frames = SubResource("SpriteFrames_hys1s")
+animation = &"Walk"
+frame_progress = 0.64267176
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_ab04i")
+}
+autoplay = "DogMovement"
+speed_scale = 0.6
+
+[node name="Buttons" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -14.0
+offset_right = 26.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Buttons"]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 1273.0
+offset_right = 998.0
+offset_bottom = 1639.0
+theme_override_constants/separation = 20
+
+[node name="PlayBtn" type="Button" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("6_kl3t2")
+flat = true
+
+[node name="Label" type="Label" parent="Buttons/VBoxContainer/PlayBtn"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -57.5
+offset_right = 112.0
+offset_bottom = 57.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.35686275, 0.5568628, 1)
+theme_override_constants/line_spacing = 10
+theme_override_fonts/font = ExtResource("3_72sra")
+theme_override_font_sizes/font_size = 100
+text = "PLAY"
+
+[node name="ProfileBtn" type="Button" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("6_kl3t2")
+flat = true
+
+[node name="Label" type="Label" parent="Buttons/VBoxContainer/ProfileBtn"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.5
+offset_top = -57.5
+offset_right = 184.5
+offset_bottom = 57.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.35686275, 0.5568628, 1)
+theme_override_constants/line_spacing = 10
+theme_override_fonts/font = ExtResource("3_72sra")
+theme_override_font_sizes/font_size = 100
+text = "PROFILE"
+
+[node name="ExitBtn" type="Button" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("7_744d7")
+flat = true
+
+[node name="Label" type="Label" parent="Buttons/VBoxContainer/ExitBtn"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.5
+offset_top = -57.5
+offset_right = 105.5
+offset_bottom = 57.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.35686275, 0.5568628, 1)
+theme_override_constants/line_spacing = 10
+theme_override_fonts/font = ExtResource("3_72sra")
+theme_override_font_sizes/font_size = 100
+text = "EXIT"
+
+[node name="QuitPanel" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_right = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="QuitPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.56078434)
+
+[node name="Control" type="Control" parent="QuitPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -432.5
+offset_top = -170.0
+offset_right = 432.5
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="QuitPanel/Control"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -20.0
+offset_right = 870.0
+offset_bottom = 340.0
+texture = ExtResource("7_m48tj")
+expand_mode = 1
+
+[node name="Quit" type="Button" parent="QuitPanel/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -161.5
+offset_top = -156.0
+offset_right = 161.5
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+icon = ExtResource("8_dvisc")
+flat = true
+expand_icon = true
+
+[node name="Cancel" type="Button" parent="QuitPanel/Control"]
+layout_mode = 0
+offset_left = 801.5
+offset_top = -19.0
+offset_right = 867.5
+offset_bottom = 33.0
+flat = true
+expand_icon = true
+
+[node name="Label" type="Label" parent="QuitPanel/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -185.5
+offset_top = 11.0
+offset_right = 185.5
+offset_bottom = 86.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_72sra")
+theme_override_font_sizes/font_size = 65
+text = "QUIT GAME?"
+
+[node name="Label2" type="Label" parent="QuitPanel/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -361.0
+offset_top = -53.5
+offset_right = 361.0
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("9_ab04i")
+theme_override_font_sizes/font_size = 45
+text = "Are you sure you want to quit?"
+
+[node name="ProfilePanel" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="ProfilePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.56078434)
+
+[node name="Control" type="Control" parent="ProfilePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -432.5
+offset_top = -170.0
+offset_right = 432.5
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="ProfilePanel/Control"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -20.0
+offset_right = 870.0
+offset_bottom = 340.0
+texture = ExtResource("7_m48tj")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="ProfilePanel/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.5
+offset_top = 12.0
+offset_right = 110.5
+offset_bottom = 82.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_72sra")
+theme_override_font_sizes/font_size = 60
+text = "PROFILE"
+
+[node name="TextureRect2" type="TextureRect" parent="ProfilePanel/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -319.5
+offset_top = -43.5
+offset_right = 319.5
+offset_bottom = 95.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_t6w0q")
+expand_mode = 1
+
+[node name="ExitProfile" type="Button" parent="ProfilePanel/Control"]
+layout_mode = 0
+offset_left = 807.0
+offset_top = -18.0
+offset_right = 867.0
+offset_bottom = 39.0
+flat = true
+
+[connection signal="pressed" from="Buttons/VBoxContainer/PlayBtn" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/ProfileBtn" to="." method="_on_profile_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/ExitBtn" to="." method="_on_exit_btn_pressed"]
+[connection signal="pressed" from="QuitPanel/Control/Quit" to="." method="_on_main_quit_pressed"]
+[connection signal="pressed" from="QuitPanel/Control/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="ProfilePanel/Control/ExitProfile" to="." method="_on_exit_profile_pressed"]

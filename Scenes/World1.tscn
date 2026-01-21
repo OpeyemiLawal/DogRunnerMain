@@ -1,0 +1,465 @@
+[gd_scene load_steps=25 format=3 uid="uid://2uu4plvr1rnt"]
+
+[ext_resource type="Script" uid="uid://blsuft1qw71ns" path="res://Scripts/ProceduralGeneration/WorldGenerator.gd" id="1_kn0k0"]
+[ext_resource type="Texture2D" uid="uid://bu4uvyas1o5hg" path="res://Assets/Skybox/kloofendal_48d_partly_cloudy_puresky_2k.exr" id="2_kmt4t"]
+[ext_resource type="PackedScene" uid="uid://p0yomltie1ir" path="res://Scenes/Character/dog.tscn" id="3_d304e"]
+[ext_resource type="PackedScene" uid="uid://bvwgq8x7n2k3r" path="res://Scenes/UI/PlayerHUD.tscn" id="4_mjbhr"]
+[ext_resource type="Texture2D" uid="uid://jps621i4xktc" path="res://Assets/GUI/NavBarBTN/NavBar.png" id="5_o61tu"]
+[ext_resource type="Texture2D" uid="uid://c1mwdmu2o0rn4" path="res://Assets/GUI/NavBarBTN/HomeBtn.png" id="6_hjjf3"]
+[ext_resource type="Texture2D" uid="uid://daj0g88g3bub8" path="res://Assets/GUI/NavBarBTN/DogCustomizationBtn.png" id="7_hk7an"]
+[ext_resource type="Texture2D" uid="uid://bu2uplfk7tivi" path="res://Assets/GUI/NavBarBTN/JourneyBtn.png" id="8_per4d"]
+[ext_resource type="Texture2D" uid="uid://clm612urfeyax" path="res://Assets/GUI/NavBarBTN/HowToPlayBtn.png" id="9_is0o3"]
+[ext_resource type="Texture2D" uid="uid://cip26y12mme1a" path="res://Assets/GUI/NavBarBTN/SettingsBtn.png" id="10_rv6ec"]
+[ext_resource type="Texture2D" uid="uid://dymnw6ida54gb" path="res://Assets/GUI/MissonHUD.png" id="11_ubuw1"]
+[ext_resource type="FontFile" uid="uid://b2ijvd80bagm4" path="res://Assets/Font/LilitaOne-Regular.ttf" id="12_hk7an"]
+[ext_resource type="Texture2D" uid="uid://c8ajc681q863g" path="res://Assets/GUI/Coin1.png" id="13_1sjyw"]
+[ext_resource type="Texture2D" uid="uid://n7m2y8uw5rq" path="res://Assets/GUI/CloseBtn.png" id="18_o61tu"]
+[ext_resource type="PackedScene" uid="uid://d1o5w0hssk6b1" path="res://Scenes/UI/victory.tscn" id="18_pba8y"]
+[ext_resource type="Texture2D" uid="uid://j3fl7p2jbdj5" path="res://Assets/GUI/ComingSoon.png" id="19_o61tu"]
+[ext_resource type="Texture2D" uid="uid://bw068i7kieqwt" path="res://Assets/GUI/dot.png" id="19_qcu3h"]
+[ext_resource type="FontFile" uid="uid://cpq50no1ckp3x" path="res://Assets/Font/Montserrat-Medium.ttf" id="20_ubuw1"]
+[ext_resource type="Texture2D" uid="uid://j4k6cu44fkn3" path="res://Assets/GUI/PopUpGui.png" id="21_hk7an"]
+[ext_resource type="Texture2D" uid="uid://d02ymww7xju8r" path="res://Assets/GUI/HowToPlay.png" id="21_qcu3h"]
+
+[sub_resource type="Shader" id="Shader_aq407"]
+code = "
+// NOTE: Shader automatically converted from Godot Engine 4.5.stable's PanoramaSkyMaterial.
+
+shader_type sky;
+
+uniform sampler2D source_panorama : filter_linear, source_color, hint_default_black;
+uniform float exposure : hint_range(0, 128) = 1.0;
+uniform float speed = 0.002;
+
+void sky() {
+	vec2 skyCords = vec2(SKY_COORDS.x + TIME * speed, SKY_COORDS.y );
+	COLOR = texture(source_panorama, skyCords).rgb * exposure;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5gbqf"]
+shader = SubResource("Shader_aq407")
+shader_parameter/source_panorama = ExtResource("2_kmt4t")
+shader_parameter/exposure = 1.0
+shader_parameter/speed = 0.004
+
+[sub_resource type="Sky" id="Sky_8qjj4"]
+sky_material = SubResource("ShaderMaterial_5gbqf")
+
+[sub_resource type="Environment" id="Environment_5gbqf"]
+background_mode = 2
+sky = SubResource("Sky_8qjj4")
+
+[node name="WorldGenerator" type="Node3D"]
+process_mode = 1
+script = ExtResource("1_kn0k0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5gbqf")
+
+[node name="player" parent="." instance=ExtResource("3_d304e")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.2, 0, 7.529)
+
+[node name="PlayerHUD" parent="." instance=ExtResource("4_mjbhr")]
+offset_left = -2.0
+offset_right = 1.0
+
+[node name="roadHolder" type="Node3D" parent="."]
+
+[node name="NavBar" type="Control" parent="."]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="NavBar"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -540.0
+offset_top = -242.0
+offset_right = 540.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_o61tu")
+
+[node name="HomeBtnMainHolder" type="Sprite2D" parent="NavBar"]
+position = Vector2(170, 1808)
+texture = ExtResource("6_hjjf3")
+
+[node name="HomeBtn" type="Button" parent="NavBar/HomeBtnMainHolder"]
+offset_left = -74.0
+offset_top = -71.0
+offset_right = 53.586266
+offset_bottom = 70.0
+scale = Vector2(1.1599995, 1)
+flat = true
+expand_icon = true
+
+[node name="DogcustomizationBtnHolder" type="Sprite2D" parent="NavBar"]
+position = Vector2(344.25, 1804)
+texture = ExtResource("7_hk7an")
+
+[node name="DogCustomizationBtn" type="Button" parent="NavBar/DogcustomizationBtnHolder"]
+offset_left = -69.25001
+offset_top = -67.99994
+offset_right = 58.33625
+offset_bottom = 70.00006
+scale = Vector2(1.1599995, 1)
+flat = true
+expand_icon = true
+
+[node name="JourneyBtnHolder" type="Sprite2D" parent="NavBar"]
+position = Vector2(533, 1803)
+texture = ExtResource("8_per4d")
+
+[node name="JourneyBtn" type="Button" parent="NavBar/JourneyBtnHolder"]
+offset_left = -73.000015
+offset_top = -71.00006
+offset_right = 55.44832
+offset_bottom = 74.99994
+scale = Vector2(1.1599995, 1)
+flat = true
+expand_icon = true
+
+[node name="HowToPlayBtnHolder" type="Sprite2D" parent="NavBar"]
+position = Vector2(720, 1804)
+texture = ExtResource("9_is0o3")
+
+[node name="HowToPlayBtn" type="Button" parent="NavBar/HowToPlayBtnHolder"]
+offset_left = -77.999985
+offset_top = -75.0
+offset_right = 54.758682
+offset_bottom = 76.0
+scale = Vector2(1.1599995, 1)
+flat = true
+expand_icon = true
+
+[node name="SettingsBtnHoldr" type="Sprite2D" parent="NavBar"]
+position = Vector2(904, 1806.4998)
+texture = ExtResource("10_rv6ec")
+
+[node name="SettingsBtn" type="Button" parent="NavBar/SettingsBtnHoldr"]
+offset_left = -76.999985
+offset_top = -73.499756
+offset_right = 53.17244
+offset_bottom = 71.500244
+scale = Vector2(1.1599995, 1)
+flat = true
+expand_icon = true
+
+[node name="Misson" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -12.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Misson"]
+layout_mode = 0
+offset_left = -44.0
+offset_top = -164.0
+offset_right = 1492.0
+offset_bottom = 860.0
+
+[node name="TextureRect" type="TextureRect" parent="Misson/TextureRect"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 91.0
+offset_right = 1227.1818
+offset_bottom = 916.0
+scale = Vector2(0.44, 0.44)
+texture = ExtResource("11_ubuw1")
+
+[node name="Label" type="Label" parent="Misson/TextureRect"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 207.0
+offset_right = 279.0
+offset_bottom = 235.0
+theme_override_fonts/font = ExtResource("12_hk7an")
+theme_override_font_sizes/font_size = 23
+text = "JOURNEY OBJECTIVES"
+
+[node name="Label2" type="Label" parent="Misson/TextureRect"]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 262.0
+offset_right = 394.0
+offset_bottom = 290.0
+theme_override_colors/font_color = Color(1, 1, 0.34509805, 1)
+theme_override_fonts/font = ExtResource("12_hk7an")
+theme_override_font_sizes/font_size = 23
+text = "COLLECT 30 POINTS"
+
+[node name="Label3" type="Label" parent="Misson/TextureRect"]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 287.0
+offset_right = 360.0
+offset_bottom = 308.0
+theme_override_colors/font_color = Color(0.963718, 0.9558938, 1, 1)
+theme_override_fonts/font = ExtResource("12_hk7an")
+theme_override_font_sizes/font_size = 18
+text = "To Unlock Coin Mode"
+
+[node name="Coin" type="Sprite2D" parent="Misson/TextureRect"]
+position = Vector2(142, 288)
+scale = Vector2(0.11682423, 0.10889553)
+texture = ExtResource("13_1sjyw")
+
+[node name="HUDHolder" type="Node2D" parent="Misson"]
+
+[node name="Victory" parent="." instance=ExtResource("18_pba8y")]
+visible = false
+
+[node name="ComingSoon" type="Control" parent="."]
+process_mode = 1
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="ComingSoon"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.56078434)
+
+[node name="Control" type="Control" parent="ComingSoon"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -432.5
+offset_top = -170.0
+offset_right = 432.5
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="ComingSoon/Control"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -20.0
+offset_right = 870.0
+offset_bottom = 340.0
+texture = ExtResource("21_hk7an")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="ComingSoon/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -319.5
+offset_top = -43.5
+offset_right = 319.5
+offset_bottom = 95.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_o61tu")
+expand_mode = 1
+
+[node name="CloseCS" type="Button" parent="ComingSoon/Control"]
+layout_mode = 0
+offset_left = 806.5
+offset_top = -20.999939
+offset_right = 869.5
+offset_bottom = 29.0
+scale = Vector2(1, 1.16)
+flat = true
+expand_icon = true
+
+[node name="Label" type="Control" parent="ComingSoon"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DogCustomization" type="Label" parent="ComingSoon/Label"]
+visible = false
+layout_mode = 0
+offset_left = 292.0
+offset_top = 800.0
+offset_right = 773.0
+offset_bottom = 870.0
+theme_override_fonts/font = ExtResource("12_hk7an")
+theme_override_font_sizes/font_size = 60
+text = "Dog Customization"
+
+[node name="Settings" type="Label" parent="ComingSoon/Label"]
+visible = false
+layout_mode = 0
+offset_left = 457.0
+offset_top = 798.0
+offset_right = 670.0
+offset_bottom = 868.0
+theme_override_fonts/font = ExtResource("12_hk7an")
+theme_override_font_sizes/font_size = 60
+text = "Settings"
+
+[node name="Journey" type="Label" parent="ComingSoon/Label"]
+visible = false
+layout_mode = 0
+offset_left = 436.0
+offset_top = 800.0
+offset_right = 645.0
+offset_bottom = 870.0
+theme_override_fonts/font = ExtResource("12_hk7an")
+theme_override_font_sizes/font_size = 60
+text = "Journey"
+
+[node name="HowToPlay" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="HowToPlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.40392157)
+
+[node name="TextureRect" type="TextureRect" parent="HowToPlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -321.5
+offset_top = -436.0
+offset_right = 321.5
+offset_bottom = 436.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("21_qcu3h")
+
+[node name="Button" type="Button" parent="HowToPlay/TextureRect"]
+layout_mode = 0
+offset_left = 533.5
+offset_top = 23.0
+offset_right = 600.5
+offset_bottom = 93.0
+icon = ExtResource("18_o61tu")
+flat = true
+expand_icon = true
+
+[node name="Label" type="Label" parent="HowToPlay"]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 636.0
+offset_right = 713.0
+offset_bottom = 700.0
+theme_override_colors/font_color = Color(0.2901961, 0.8745098, 0.9529412, 1)
+theme_override_fonts/font = ExtResource("12_hk7an")
+theme_override_font_sizes/font_size = 55
+text = "NAVIGATION"
+
+[node name="Control" type="Control" parent="HowToPlay"]
+anchors_preset = 0
+offset_left = 324.0
+offset_top = 1087.0
+offset_right = 364.0
+offset_bottom = 1127.0
+
+[node name="Control" type="Control" parent="HowToPlay/Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Dot" type="Sprite2D" parent="HowToPlay/Control/Control"]
+texture = ExtResource("19_qcu3h")
+
+[node name="Label" type="Label" parent="HowToPlay/Control/Control"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = -15.0
+offset_right = 395.0
+offset_bottom = 13.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("20_ubuw1")
+theme_override_font_sizes/font_size = 22
+text = "Swipe Left/ Right to change Lane"
+
+[node name="Control2" type="Control" parent="HowToPlay/Control"]
+anchors_preset = 0
+offset_top = 57.0
+offset_right = 40.0
+offset_bottom = 97.0
+
+[node name="Dot" type="Sprite2D" parent="HowToPlay/Control/Control2"]
+position = Vector2(0, 3)
+texture = ExtResource("19_qcu3h")
+
+[node name="Label" type="Label" parent="HowToPlay/Control/Control2"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = -12.0
+offset_right = 231.0
+offset_bottom = 16.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("20_ubuw1")
+theme_override_font_sizes/font_size = 22
+text = "Swipe Up To Jump"
+
+[node name="Control3" type="Control" parent="HowToPlay/Control"]
+anchors_preset = 0
+offset_top = 113.0
+offset_right = 40.0
+offset_bottom = 153.0
+
+[node name="Dot" type="Sprite2D" parent="HowToPlay/Control/Control3"]
+position = Vector2(0, 3)
+texture = ExtResource("19_qcu3h")
+
+[node name="Label" type="Label" parent="HowToPlay/Control/Control3"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = -12.0
+offset_right = 231.0
+offset_bottom = 16.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("20_ubuw1")
+theme_override_font_sizes/font_size = 22
+text = "Press/Hold To Stop"
+
+[connection signal="pressed" from="NavBar/HomeBtnMainHolder/HomeBtn" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="NavBar/DogcustomizationBtnHolder/DogCustomizationBtn" to="." method="_on_customize_pressed"]
+[connection signal="pressed" from="NavBar/JourneyBtnHolder/JourneyBtn" to="." method="_on_misson_pressed"]
+[connection signal="pressed" from="NavBar/HowToPlayBtnHolder/HowToPlayBtn" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="NavBar/SettingsBtnHoldr/SettingsBtn" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="ComingSoon/Control/CloseCS" to="." method="_on_close_cs_pressed"]
+[connection signal="pressed" from="HowToPlay/TextureRect/Button" to="." method="_on_close_how_to_play_pressed"]
