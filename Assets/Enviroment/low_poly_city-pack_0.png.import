@@ -3,11 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cirmhe1k2fsqc"
-path.s3tc="res://.godot/imported/low_poly_city-pack_0.png-e84f337d22d1bc4258cf33eb4f2ac52f.s3tc.ctex"
-path.etc2="res://.godot/imported/low_poly_city-pack_0.png-e84f337d22d1bc4258cf33eb4f2ac52f.etc2.ctex"
+path="res://.godot/imported/low_poly_city-pack_0.png-e84f337d22d1bc4258cf33eb4f2ac52f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "bc804f9d1a9d05afd94f2ab5e5a29abf"
@@ -16,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Enviroment/low_poly_city-pack_0.png"
-dest_files=["res://.godot/imported/low_poly_city-pack_0.png-e84f337d22d1bc4258cf33eb4f2ac52f.s3tc.ctex", "res://.godot/imported/low_poly_city-pack_0.png-e84f337d22d1bc4258cf33eb4f2ac52f.etc2.ctex"]
+dest_files=["res://.godot/imported/low_poly_city-pack_0.png-e84f337d22d1bc4258cf33eb4f2ac52f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

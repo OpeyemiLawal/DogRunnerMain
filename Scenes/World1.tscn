@@ -13,12 +13,12 @@
 [ext_resource type="Texture2D" uid="uid://dymnw6ida54gb" path="res://Assets/GUI/MissonHUD.png" id="11_ubuw1"]
 [ext_resource type="FontFile" uid="uid://b2ijvd80bagm4" path="res://Assets/Font/LilitaOne-Regular.ttf" id="12_hk7an"]
 [ext_resource type="Texture2D" uid="uid://c8ajc681q863g" path="res://Assets/GUI/Coin1.png" id="13_1sjyw"]
+[ext_resource type="Texture2D" uid="uid://b1g7uo3ux1c0d" path="res://Assets/GUI/PopUp.png" id="15_1sjyw"]
 [ext_resource type="Texture2D" uid="uid://n7m2y8uw5rq" path="res://Assets/GUI/CloseBtn.png" id="18_o61tu"]
 [ext_resource type="PackedScene" uid="uid://d1o5w0hssk6b1" path="res://Scenes/UI/victory.tscn" id="18_pba8y"]
 [ext_resource type="Texture2D" uid="uid://j3fl7p2jbdj5" path="res://Assets/GUI/ComingSoon.png" id="19_o61tu"]
 [ext_resource type="Texture2D" uid="uid://bw068i7kieqwt" path="res://Assets/GUI/dot.png" id="19_qcu3h"]
 [ext_resource type="FontFile" uid="uid://cpq50no1ckp3x" path="res://Assets/Font/Montserrat-Medium.ttf" id="20_ubuw1"]
-[ext_resource type="Texture2D" uid="uid://j4k6cu44fkn3" path="res://Assets/GUI/PopUpGui.png" id="21_hk7an"]
 [ext_resource type="Texture2D" uid="uid://d02ymww7xju8r" path="res://Assets/GUI/HowToPlay.png" id="21_qcu3h"]
 
 [sub_resource type="Shader" id="Shader_aq407"]
@@ -146,7 +146,7 @@ flat = true
 expand_icon = true
 
 [node name="SettingsBtnHoldr" type="Sprite2D" parent="NavBar"]
-position = Vector2(904, 1806.4998)
+position = Vector2(904, 1806)
 texture = ExtResource("10_rv6ec")
 
 [node name="SettingsBtn" type="Button" parent="NavBar/SettingsBtnHoldr"]
@@ -254,9 +254,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -432.5
+offset_left = -429.5
 offset_top = -170.0
-offset_right = 432.5
+offset_right = 435.5
 offset_bottom = 170.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -264,10 +264,10 @@ grow_vertical = 2
 [node name="TextureRect" type="TextureRect" parent="ComingSoon/Control"]
 layout_mode = 0
 offset_left = -10.0
-offset_top = -20.0
+offset_top = -58.0
 offset_right = 870.0
-offset_bottom = 340.0
-texture = ExtResource("21_hk7an")
+offset_bottom = 356.0
+texture = ExtResource("15_1sjyw")
 expand_mode = 1
 
 [node name="TextureRect2" type="TextureRect" parent="ComingSoon/Control"]
@@ -278,9 +278,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -319.5
-offset_top = -43.5
+offset_top = -67.5
 offset_right = 319.5
-offset_bottom = 95.5
+offset_bottom = 71.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("19_o61tu")
@@ -288,11 +288,12 @@ expand_mode = 1
 
 [node name="CloseCS" type="Button" parent="ComingSoon/Control"]
 layout_mode = 0
-offset_left = 806.5
-offset_top = -20.999939
-offset_right = 869.5
-offset_bottom = 29.0
+offset_left = 756.5
+offset_top = -28.999989
+offset_right = 818.5
+offset_bottom = 28.758617
 scale = Vector2(1, 1.16)
+icon = ExtResource("18_o61tu")
 flat = true
 expand_icon = true
 
@@ -304,35 +305,38 @@ offset_bottom = 40.0
 [node name="DogCustomization" type="Label" parent="ComingSoon/Label"]
 visible = false
 layout_mode = 0
-offset_left = 292.0
-offset_top = 800.0
-offset_right = 773.0
-offset_bottom = 870.0
+offset_left = 306.0
+offset_top = 757.0
+offset_right = 787.0
+offset_bottom = 827.0
 theme_override_fonts/font = ExtResource("12_hk7an")
 theme_override_font_sizes/font_size = 60
-text = "Dog Customization"
+text = "Customization"
+uppercase = true
 
 [node name="Settings" type="Label" parent="ComingSoon/Label"]
 visible = false
 layout_mode = 0
-offset_left = 457.0
-offset_top = 798.0
-offset_right = 670.0
-offset_bottom = 868.0
+offset_left = 417.0
+offset_top = 760.0
+offset_right = 672.0
+offset_bottom = 830.0
 theme_override_fonts/font = ExtResource("12_hk7an")
 theme_override_font_sizes/font_size = 60
 text = "Settings"
+uppercase = true
 
 [node name="Journey" type="Label" parent="ComingSoon/Label"]
 visible = false
 layout_mode = 0
-offset_left = 436.0
-offset_top = 800.0
-offset_right = 645.0
-offset_bottom = 870.0
+offset_left = 417.0
+offset_top = 756.0
+offset_right = 665.0
+offset_bottom = 826.0
 theme_override_fonts/font = ExtResource("12_hk7an")
 theme_override_font_sizes/font_size = 60
 text = "Journey"
+uppercase = true
 
 [node name="HowToPlay" type="Control" parent="."]
 visible = false

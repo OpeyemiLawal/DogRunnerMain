@@ -13,14 +13,14 @@ config_version=5
 config/name="DogRunner"
 run/main_scene="uid://b1tf8c6n4sckq"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-boot_splash/image="uid://cnx3rnymrm0lm"
+boot_splash/image="uid://bdyyd7u6333ie"
 config/icon="uid://c5evt4ouaidfx"
 
 [display]
 
 window/size/viewport_width=1080
 window/size/viewport_height=1920
-window/size/mode=4
+window/size/mode=3
 window/stretch/mode="canvas_items"
 window/handheld/orientation=1
 

@@ -3,11 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bnb73dq6f5ncu"
-path.s3tc="res://.godot/imported/bit_coin_0.jpg-e2bd3b467926b56794af89d1d9f224c9.s3tc.ctex"
-path.etc2="res://.godot/imported/bit_coin_0.jpg-e2bd3b467926b56794af89d1d9f224c9.etc2.ctex"
+path="res://.godot/imported/bit_coin_0.jpg-e2bd3b467926b56794af89d1d9f224c9.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "ec1034f61af395fb49fbd994583a01f5"
@@ -16,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/Collectiables/bit_coin_0.jpg"
-dest_files=["res://.godot/imported/bit_coin_0.jpg-e2bd3b467926b56794af89d1d9f224c9.s3tc.ctex", "res://.godot/imported/bit_coin_0.jpg-e2bd3b467926b56794af89d1d9f224c9.etc2.ctex"]
+dest_files=["res://.godot/imported/bit_coin_0.jpg-e2bd3b467926b56794af89d1d9f224c9.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
