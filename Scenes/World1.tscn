@@ -16,8 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://b1g7uo3ux1c0d" path="res://Assets/GUI/PopUp.png" id="15_1sjyw"]
 [ext_resource type="Texture2D" uid="uid://n7m2y8uw5rq" path="res://Assets/GUI/CloseBtn.png" id="18_o61tu"]
 [ext_resource type="PackedScene" uid="uid://d1o5w0hssk6b1" path="res://Scenes/UI/victory.tscn" id="18_pba8y"]
+[ext_resource type="Texture2D" uid="uid://1r0o651h1fxu" path="res://Assets/GUI/Dot.png" id="19_1sjyw"]
 [ext_resource type="Texture2D" uid="uid://j3fl7p2jbdj5" path="res://Assets/GUI/ComingSoon.png" id="19_o61tu"]
-[ext_resource type="Texture2D" uid="uid://bw068i7kieqwt" path="res://Assets/GUI/dot.png" id="19_qcu3h"]
 [ext_resource type="FontFile" uid="uid://cpq50no1ckp3x" path="res://Assets/Font/Montserrat-Medium.ttf" id="20_ubuw1"]
 [ext_resource type="Texture2D" uid="uid://d02ymww7xju8r" path="res://Assets/GUI/HowToPlay.png" id="21_qcu3h"]
 
@@ -65,8 +65,10 @@ environment = SubResource("Environment_5gbqf")
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.2, 0, 7.529)
 
 [node name="PlayerHUD" parent="." instance=ExtResource("4_mjbhr")]
-offset_left = -2.0
-offset_right = 1.0
+offset_left = 765.0
+offset_top = 28.0
+offset_right = -14.0
+offset_bottom = -1701.0
 
 [node name="roadHolder" type="Node3D" parent="."]
 
@@ -163,10 +165,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -12.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = -4.0
+offset_left = 18.0
+offset_top = 9.0
+offset_right = -650.0
+offset_bottom = -1714.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -179,10 +181,10 @@ offset_bottom = 860.0
 
 [node name="TextureRect" type="TextureRect" parent="Misson/TextureRect"]
 layout_mode = 0
-offset_left = 9.0
-offset_top = 91.0
-offset_right = 1227.1818
-offset_bottom = 916.0
+offset_left = 44.0
+offset_top = 178.0
+offset_right = 978.0909
+offset_bottom = 616.63635
 scale = Vector2(0.44, 0.44)
 texture = ExtResource("11_ubuw1")
 
@@ -245,7 +247,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.56078434)
+color = Color(0, 0, 0, 0.569)
 
 [node name="Control" type="Control" parent="ComingSoon"]
 layout_mode = 1
@@ -288,11 +290,10 @@ expand_mode = 1
 
 [node name="CloseCS" type="Button" parent="ComingSoon/Control"]
 layout_mode = 0
-offset_left = 756.5
-offset_top = -28.999989
-offset_right = 818.5
-offset_bottom = 28.758617
-scale = Vector2(1, 1.16)
+offset_left = 761.5
+offset_top = -31.0
+offset_right = 830.0
+offset_bottom = 39.0
 icon = ExtResource("18_o61tu")
 flat = true
 expand_icon = true
@@ -306,9 +307,9 @@ offset_bottom = 40.0
 visible = false
 layout_mode = 0
 offset_left = 306.0
-offset_top = 757.0
+offset_top = 758.0
 offset_right = 787.0
-offset_bottom = 827.0
+offset_bottom = 828.0
 theme_override_fonts/font = ExtResource("12_hk7an")
 theme_override_font_sizes/font_size = 60
 text = "Customization"
@@ -317,10 +318,10 @@ uppercase = true
 [node name="Settings" type="Label" parent="ComingSoon/Label"]
 visible = false
 layout_mode = 0
-offset_left = 417.0
-offset_top = 760.0
-offset_right = 672.0
-offset_bottom = 830.0
+offset_left = 409.0
+offset_top = 758.0
+offset_right = 664.0
+offset_bottom = 828.0
 theme_override_fonts/font = ExtResource("12_hk7an")
 theme_override_font_sizes/font_size = 60
 text = "Settings"
@@ -330,9 +331,9 @@ uppercase = true
 visible = false
 layout_mode = 0
 offset_left = 417.0
-offset_top = 756.0
+offset_top = 757.0
 offset_right = 665.0
-offset_bottom = 826.0
+offset_bottom = 827.0
 theme_override_fonts/font = ExtResource("12_hk7an")
 theme_override_font_sizes/font_size = 60
 text = "Journey"
@@ -354,7 +355,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.40392157)
+color = Color(0, 0, 0, 0.569)
 
 [node name="TextureRect" type="TextureRect" parent="HowToPlay"]
 layout_mode = 1
@@ -363,20 +364,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -321.5
-offset_top = -436.0
-offset_right = 321.5
-offset_bottom = 436.0
+offset_left = -281.5
+offset_top = -427.5
+offset_right = 281.5
+offset_bottom = 376.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("21_qcu3h")
+expand_mode = 1
 
 [node name="Button" type="Button" parent="HowToPlay/TextureRect"]
 layout_mode = 0
-offset_left = 533.5
-offset_top = 23.0
-offset_right = 600.5
-offset_bottom = 93.0
+offset_left = 482.5
+offset_top = 21.5
+offset_right = 551.0
+offset_bottom = 91.5
 icon = ExtResource("18_o61tu")
 flat = true
 expand_icon = true
@@ -387,7 +389,6 @@ offset_left = 390.0
 offset_top = 636.0
 offset_right = 713.0
 offset_bottom = 700.0
-theme_override_colors/font_color = Color(0.2901961, 0.8745098, 0.9529412, 1)
 theme_override_fonts/font = ExtResource("12_hk7an")
 theme_override_font_sizes/font_size = 55
 text = "NAVIGATION"
@@ -405,7 +406,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Dot" type="Sprite2D" parent="HowToPlay/Control/Control"]
-texture = ExtResource("19_qcu3h")
+texture = ExtResource("19_1sjyw")
 
 [node name="Label" type="Label" parent="HowToPlay/Control/Control"]
 layout_mode = 0
@@ -426,7 +427,7 @@ offset_bottom = 97.0
 
 [node name="Dot" type="Sprite2D" parent="HowToPlay/Control/Control2"]
 position = Vector2(0, 3)
-texture = ExtResource("19_qcu3h")
+texture = ExtResource("19_1sjyw")
 
 [node name="Label" type="Label" parent="HowToPlay/Control/Control2"]
 layout_mode = 0
@@ -447,7 +448,7 @@ offset_bottom = 153.0
 
 [node name="Dot" type="Sprite2D" parent="HowToPlay/Control/Control3"]
 position = Vector2(0, 3)
-texture = ExtResource("19_qcu3h")
+texture = ExtResource("19_1sjyw")
 
 [node name="Label" type="Label" parent="HowToPlay/Control/Control3"]
 layout_mode = 0

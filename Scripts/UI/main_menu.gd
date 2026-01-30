@@ -25,12 +25,12 @@ func _ready() -> void:
 
 
 	 #Connect button signals
-	quit_button.pressed.connect(_on_quit_pressed)
+	#quit_button.pressed.connect(_on_quit_pressed)
 	
 func _process(delta: float) -> void:
 	if is_game_paused == false:
 		bg.position.x -= speed * delta
-		if bg.position.x <= -995:
+		if bg.position.x <= -1139.0:
 			bg.position.x = -805
 			$AnimatedSprite2D/AnimationPlayer.play("DogMovement")
 		$AnimatedSprite2D.play("Walk")

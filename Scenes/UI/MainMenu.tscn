@@ -50,6 +50,7 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_m48tj"]
 resource_name = "DogMovement"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -57,10 +58,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.9, 2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(488, 495), Vector2(686, 685), Vector2(946, 489)]
+"values": [Vector2(488, 495), Vector2(585, 692), Vector2(929.00006, 500)]
 }
 
 [sub_resource type="Animation" id="Animation_dvisc"]
@@ -120,7 +121,7 @@ position = Vector2(488, 495)
 scale = Vector2(1.0019531, 1.1655405)
 sprite_frames = SubResource("SpriteFrames_hys1s")
 animation = &"Walk"
-frame_progress = 0.7624863
+frame_progress = 0.8369661
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
 libraries = {
@@ -143,12 +144,16 @@ offset_right = 998.0
 offset_bottom = 1639.0
 theme_override_constants/separation = 20
 
-[node name="PlayBtn" type="Button" parent="Buttons/VBoxContainer"]
-layout_mode = 2
+[node name="PlayBtn" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 1325.0
+offset_right = 1007.0
+offset_bottom = 1506.0
 icon = ExtResource("6_kl3t2")
 flat = true
 
-[node name="Label" type="Label" parent="Buttons/VBoxContainer/PlayBtn"]
+[node name="Label" type="Label" parent="Buttons/PlayBtn"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -167,12 +172,16 @@ theme_override_fonts/font = ExtResource("3_72sra")
 theme_override_font_sizes/font_size = 100
 text = "PLAY"
 
-[node name="ProfileBtn" type="Button" parent="Buttons/VBoxContainer"]
-layout_mode = 2
+[node name="ProfileBtn" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 1526.0
+offset_right = 1007.0
+offset_bottom = 1707.0
 icon = ExtResource("6_kl3t2")
 flat = true
 
-[node name="Label" type="Label" parent="Buttons/VBoxContainer/ProfileBtn"]
+[node name="Label" type="Label" parent="Buttons/ProfileBtn"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -191,12 +200,16 @@ theme_override_fonts/font = ExtResource("3_72sra")
 theme_override_font_sizes/font_size = 100
 text = "PROFILE"
 
-[node name="ExitBtn" type="Button" parent="Buttons/VBoxContainer"]
-layout_mode = 2
+[node name="ExitBtn" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 1703.0
+offset_right = 999.0
+offset_bottom = 1915.0
 icon = ExtResource("7_744d7")
 flat = true
 
-[node name="Label" type="Label" parent="Buttons/VBoxContainer/ExitBtn"]
+[node name="Label" type="Label" parent="Buttons/ExitBtn"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -233,7 +246,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.56078434)
+color = Color(0, 0, 0, 0.569)
 
 [node name="Control" type="Control" parent="QuitPanel"]
 layout_mode = 1
@@ -277,10 +290,10 @@ expand_icon = true
 
 [node name="Cancel" type="Button" parent="QuitPanel/Control"]
 layout_mode = 0
-offset_left = 758.5
-offset_top = -23.0
-offset_right = 817.5
-offset_bottom = 35.0
+offset_left = 761.5
+offset_top = -31.0
+offset_right = 830.0
+offset_bottom = 39.0
 icon = ExtResource("12_hys1s")
 flat = true
 expand_icon = true
@@ -290,13 +303,13 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -184.5
-offset_top = -38.0
-offset_right = 186.5
-offset_bottom = 37.0
+offset_left = -160.0
+offset_top = -34.0
+offset_right = 183.0
+offset_bottom = 36.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("3_72sra")
-theme_override_font_sizes/font_size = 65
+theme_override_font_sizes/font_size = 60
 text = "QUIT GAME?"
 
 [node name="Label2" type="Label" parent="QuitPanel/Control"]
@@ -332,7 +345,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.56078434)
+color = Color(0, 0, 0, 0.569)
 
 [node name="Control" type="Control" parent="ProfilePanel"]
 layout_mode = 1
@@ -375,9 +388,9 @@ expand_mode = 1
 
 [node name="ExitProfile" type="Button" parent="ProfilePanel/Control"]
 layout_mode = 0
-offset_left = 747.5
+offset_left = 761.5
 offset_top = -31.0
-offset_right = 816.0
+offset_right = 830.0
 offset_bottom = 39.0
 icon = ExtResource("12_hys1s")
 flat = true
@@ -388,18 +401,18 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -97.5
-offset_top = -36.0
-offset_right = 123.5
-offset_bottom = 34.0
+offset_left = -113.5
+offset_top = -32.0
+offset_right = 107.5
+offset_bottom = 38.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("3_72sra")
 theme_override_font_sizes/font_size = 60
 text = "PROFILE"
 
-[connection signal="pressed" from="Buttons/VBoxContainer/PlayBtn" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Buttons/VBoxContainer/ProfileBtn" to="." method="_on_profile_pressed"]
-[connection signal="pressed" from="Buttons/VBoxContainer/ExitBtn" to="." method="_on_exit_btn_pressed"]
+[connection signal="pressed" from="Buttons/PlayBtn" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Buttons/ProfileBtn" to="." method="_on_profile_pressed"]
+[connection signal="pressed" from="Buttons/ExitBtn" to="." method="_on_exit_btn_pressed"]
 [connection signal="pressed" from="QuitPanel/Control/Quit" to="." method="_on_main_quit_pressed"]
 [connection signal="pressed" from="QuitPanel/Control/Cancel" to="." method="_on_cancel_pressed"]
 [connection signal="pressed" from="ProfilePanel/Control/ExitProfile" to="." method="_on_exit_profile_pressed"]
