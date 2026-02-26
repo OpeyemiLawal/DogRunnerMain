@@ -1,12 +1,12 @@
 extends Control
 
-@onready var start_button = $Buttons/VBoxContainer/PlayBtn # Adjust path to your button
-@onready var quit_button = $Buttons/VBoxContainer/ExitBtn  # Adjust path to your button
-@onready var start_overlay = $Buttons/VBoxContainer/ProfileBtn  # Optional "Tap to Start" Control
-@onready var profile_panel: Control = $ProfilePanel
-@onready var quit_panel: Control = $QuitPanel
 
-@onready var bg: Sprite2D = $Sprite2D
+@onready var quit_button = $Menu/QuitPanel/Control/Quit
+@onready var start_overlay = $Menu/Buttons/VBoxContainer/ProfileBtn  # Optional "Tap to Start" Control
+@onready var profile_panel: Control = $Menu/ProfilePanel
+@onready var quit_panel: Control = $Menu/QuitPanel
+
+@onready var bg: Sprite2D = $Menu/Sprite2D
 @export var speed := 100.0
 var is_game_paused = false
 
@@ -23,18 +23,16 @@ func _ready() -> void:
 		start_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
 		start_overlay.connect("gui_input", Callable(self, "_on_first_interaction"))
 
+	# Start splash animation
+	$SplashScreen/AnimationPlayer.play("Splash")
+
 
 	 #Connect button signals
-	#quit_button.pressed.connect(_on_quit_pressed)
+	
+	
 	
 func _process(delta: float) -> void:
-	if is_game_paused == false:
-		bg.position.x -= speed * delta
-		if bg.position.x <= -1139.0:
-			bg.position.x = -805
-			$AnimatedSprite2D/AnimationPlayer.play("DogMovement")
-		$AnimatedSprite2D.play("Walk")
-	
+	pass
 	
 # Called on first click/tap
 func _on_first_interaction(event):
@@ -69,5 +67,8 @@ func _on_cancel_pressed() -> void:
 	quit_panel.visible = false
 
 
-func _on_main_quit_pressed() -> void:
-	get_tree().quit()
+func _on_splash_finished(_anim_name):
+	$Menu.visible = true
+	$SplashScreen.visible = false
+	$Menu/BgAnimPlayer.play("BackgroundAnim")
+	$Menu/DogAnimPlayer.play("Anim")

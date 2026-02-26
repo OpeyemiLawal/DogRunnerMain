@@ -2,23 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb7emhrdcm8yw"
-path="res://.godot/imported/low_poly_city1_1.png-61ed88de5e995151de4b5da0a137a44f.ctex"
+uid="uid://beaobcgv6y8e5"
+path="res://.godot/imported/DogJump.png-af94dfb9132ec02afcdad6288482a30f.ctex"
 metadata={
 "vram_texture": false
-}
-generator_parameters={
-"md5": "b1fe73b5090e6ff40df7e977819bcd25"
 }
 
 [deps]
 
-source_file="res://Assets/Enviroment/low_poly_city1_1.png"
-dest_files=["res://.godot/imported/low_poly_city1_1.png-61ed88de5e995151de4b5da0a137a44f.ctex"]
+source_file="res://Assets/GUI/DogJump.png"
+dest_files=["res://.godot/imported/DogJump.png-af94dfb9132ec02afcdad6288482a30f.ctex"]
 
 [params]
 
-compress/mode=4
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -26,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -40,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
